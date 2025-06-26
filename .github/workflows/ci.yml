@@ -34,7 +34,7 @@ jobs:
           clj-kondo: 2025.06.05 # Clj-kondo
 
       - name: Run Unit tests
-        run: clojure -X:test:runner
+        run: clojure -M:test:runner
 
       - name: "Lint with clj-kondo"
         run: clj-kondo --lint deps.edn src resources test
