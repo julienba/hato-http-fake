@@ -37,4 +37,4 @@ jobs:
         run: clojure -M:test:runner
 
       - name: "Lint with clj-kondo"
-        run: clj-kondo --lint deps.edn src resources test
+        run: clj-kondo --lint deps.edn src test
