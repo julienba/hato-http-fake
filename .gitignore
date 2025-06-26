@@ -1,0 +1,39 @@
+# Clojure
+.cpcache/
+.lein-*
+.nrepl-port
+.stutter/
+.lsp/
+.clj-kondo/
+.portal/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build artifacts
+target/
+classes/
+checkouts/
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+
+# Kaocha
+.kaocha/
+
+# Test coverage
+coverage/
+
+# Temporary files
+*.tmp
+*.temp

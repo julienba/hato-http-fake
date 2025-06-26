@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: 'clojure'
+
+    - name: Install Clojure CLI
+      run: |
+        curl -O https://download.clojure.org/install/linux-install-1.12.0.0.sh
+        chmod +x linux-install-1.12.0.0.sh
+        sudo ./linux-install-1.12.0.0.sh
+
+    - name: Install clj-kondo
+      run: |
+        curl -sLO https://raw.githubusercontent.com/clj-kondo/clj-kondo/master/script/install-clj-kondo
+        chmod +x install-clj-kondo
+        ./install-clj-kondo --version 2023.12.10
+
+    - name: Run clj-kondo
+      run: |
+        clj-kondo --lint src test --config '{:output {:format :text}}'
+
+    - name: Run tests
+      run: clojure -X:test:runner
